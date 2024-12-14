@@ -34,9 +34,7 @@ app.get('/api/v1/query', (req, res) => {
 		sortedProducts = sortedProducts.filter((product) => {
 			const productPrice = product.price
 			console.log(productPrice)
-			return (
-				productPrice >= parseFloat(price) && productPrice <= parseFloat(price)
-			)
+			return productPrice <= parseFloat(price)
 		})
 	}
 
@@ -51,7 +49,7 @@ app.get('/api/v1/query', (req, res) => {
 	}
 
 	if (sortedProducts.length < 1) {
-		return res.status(200).json({ success: true, data: [] })
+		return res.status(200).json([])
 	}
 
 	res.status(200).json(sortedProducts)
